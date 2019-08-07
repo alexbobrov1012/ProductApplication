@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Товары</string>
+    <string-array name="productCategory">
+        <item>Все</item>
+        <item>Книги</item>
+        <item>Диски</item>
+    </string-array>
+</resources>
