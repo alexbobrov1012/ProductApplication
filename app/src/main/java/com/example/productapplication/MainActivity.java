@@ -2,7 +2,6 @@ package com.example.productapplication;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 
@@ -16,10 +15,9 @@ import com.example.productapplication.data.books.Book;
 import com.example.productapplication.data.books.CookingBook;
 import com.example.productapplication.data.books.EsotericsBook;
 import com.example.productapplication.data.books.ProgrammingBook;
-import com.example.productapplication.data.discs.CDDisc;
-import com.example.productapplication.data.discs.DVDDisc;
 import com.example.productapplication.data.discs.Disc;
 import com.example.productapplication.data.utils.DiscContent;
+import com.example.productapplication.data.utils.ProductType;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -38,29 +36,21 @@ public class MainActivity extends AppCompatActivity implements OnItemListClickLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        initProducts();
+        products = new ArrayList<>();
 
         initRecycleView();
 
         initSpinner();
     }
 
-    void initProducts() {
-        products = new ArrayList<>();
-        products.add(new ProgrammingBook("Философия Java", 500, "1234prog", 567, "Java"));
-        products.add(new CookingBook("Борщи", 300, "12345cook", 324, "Свекла"));
-        products.add(new EsotericsBook("Империя ангелов", 755, "12345eso", 56, 32));
-        products.add(new CDDisc("Стас Михайлов", 250, "12346mus", DiscContent.MUSIC));
-        products.add(new DVDDisc("Унесенные призраками", 500, "1234film", DiscContent.VIDEO));
-    }
+
 
     void initRecycleView() {
         RecyclerView recyclerView = findViewById(R.id.productsRecycleView);
         adapter = new ProductRecycleViewAdapter(this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter.setProducts(products);
-        adapter.notifyDataSetChanged();
+        showAllProducts();
     }
 
     void initSpinner() {
@@ -71,8 +61,7 @@ public class MainActivity extends AppCompatActivity implements OnItemListClickLi
 
                 String [] categoryArray = getResources().getStringArray(R.array.productCategory);
                 if (spinner.getSelectedItem().equals(categoryArray[0])) {
-                    initProducts();
-                    adapter.setProducts(products);
+                    showAllProducts();
                 }
                 else if(spinner.getSelectedItem().equals(categoryArray[1])) {
                     showBooksOnly();
@@ -89,34 +78,34 @@ public class MainActivity extends AppCompatActivity implements OnItemListClickLi
         });
     }
 
+    void showAllProducts() {
+        adapter.setProducts(ProdApp.getAppInstance().getProductList());
+    }
     void showBooksOnly() {
-        initProducts();
-        Iterator<Product> i = products.iterator();
-        while (i.hasNext()) {
-            Product s = i.next();
-            if(s instanceof Disc)
-                i.remove();
+        products.clear();
+        for(Product token : ProdApp.getAppInstance().getProductList()) {
+            if(token.getProductType().equals(ProductType.BOOK)) {
+                products.add(token);
+            }
         }
         adapter.setProducts(products);
-        adapter.notifyDataSetChanged();
     }
 
     void showDisksOnly() {
-        initProducts();
-        Iterator<Product> i = products.iterator();
-        while (i.hasNext()) {
-            Product s = i.next();
-            if(s instanceof Book)
-                i.remove();
+        products.clear();
+        for(Product token : ProdApp.getAppInstance().getProductList()) {
+            if(token.getProductType().equals(ProductType.DISC)) {
+                products.add(token);
+            }
         }
         adapter.setProducts(products);
-        adapter.notifyDataSetChanged();
     }
 
     @Override
     public void onItemListClick(int adapterPosition) {
         Intent intent = new Intent(this, AboutActivity.class);
-        intent.putExtra("product", adapter.getItemById(adapterPosition));
+        intent.putExtra("productName", adapter.getItemById(adapterPosition).getName());
+        intent.putExtra("productInfo", adapter.getItemById(adapterPosition).getInfo());
         startActivity(intent);
     }
 }

@@ -29,19 +29,9 @@ public class ProductRecycleViewHolder extends RecyclerView.ViewHolder implements
         itemView.setOnClickListener(this);
     }
 
-    public void bind(Product product) {
-        String title, subTitle = "";
-        title = product.getName();
-        if (product instanceof CookingBook)
-            subTitle = BookContent.COOKING.getTitle();
-        else if (product instanceof EsotericsBook)
-            subTitle = BookContent.ESOTERICS.getTitle();
-        else if (product instanceof ProgrammingBook)
-            subTitle = BookContent.PROGRAMMING.getTitle();
-        else if(product instanceof Disc)
-            subTitle = ((Disc) product).getContent().getTitle();
+    public void bind(String title, String subtitle) {
         titleTextView.setText(title);
-        subTitleTextView.setText(subTitle);
+        subTitleTextView.setText(subtitle);
     }
 
     @Override

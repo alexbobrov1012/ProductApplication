@@ -7,24 +7,25 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.productapplication.data.Product;
-
 public class AboutActivity extends AppCompatActivity {
 
     TextView aboutTextView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
-        Intent intent = getIntent();
-        Product productItem = (Product) intent.getSerializableExtra("product");
 
-        getSupportActionBar().setTitle(productItem.getName());
+        Intent intent = getIntent();
+        String productName = intent.getStringExtra("productName");
+        String productInfo = intent.getStringExtra("productInfo");
+
+        getSupportActionBar().setTitle(productName);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         aboutTextView = findViewById(R.id.aboutTextView);
-        aboutTextView.setText(productItem.toString());
+        aboutTextView.setText(productInfo);
     }
 
     @Override

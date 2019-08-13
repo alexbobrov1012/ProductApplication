@@ -1,5 +1,7 @@
 package com.example.productapplication.data;
 
+import com.example.productapplication.data.utils.ProductType;
+
 import java.io.Serializable;
 
 public abstract class Product implements Serializable {
@@ -9,10 +11,13 @@ public abstract class Product implements Serializable {
 
     private String code;
 
-    public Product(String name, double price, String code) {
+    private ProductType productType;
+
+    public Product(String name, double price, String code, ProductType productType) {
         this.name = name;
         this.price = price;
         this.code = code;
+        this.productType = productType;
     }
 
     public String getName() {
@@ -27,11 +32,20 @@ public abstract class Product implements Serializable {
         return code;
     }
 
-    @Override
-    public String toString() {
-        return "Имя = " + name + '\n' +
-                "Цена = " + price + '\n' +
-                "Штрих код = " + code + '\n'
-                ;
+    public ProductType getProductType() {
+        return productType;
     }
+
+    public String getInfo() {
+        return "Имя: " + name + '\n' +
+                "Цена: " + price + '\n' +
+                "Штрих код: " + code + '\n';
+    }
+
+    public String getTitle() {
+        return getName();
+    }
+
+    public abstract String getSubTitle();
+
 }

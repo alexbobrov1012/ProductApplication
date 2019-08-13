@@ -1,17 +1,20 @@
 package com.example.productapplication.data.books;
 
+import com.example.productapplication.data.utils.BookContent;
+
 public class EsotericsBook extends Book {
     private int minAge;
 
     public EsotericsBook(String name, double price, String code, int pages, int minAge) {
-        super(name, price, code, pages);
+        super(name, price, code, pages, BookContent.ESOTERICS);
         this.minAge = minAge;
     }
 
     @Override
-    public String toString() {
-        return super.toString() +
-                "Возраст = " + minAge + '\n' +
-                "Страницы =" + pages + '\n';
+    public String getInfo() {
+        return super.getInfo() +
+                "Возраст: " + minAge + '\n' +
+                "Страницы: " + pages + '\n';
     }
+
 }

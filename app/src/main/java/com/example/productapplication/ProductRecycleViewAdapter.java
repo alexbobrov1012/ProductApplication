@@ -10,16 +10,18 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.productapplication.data.Product;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ProductRecycleViewAdapter extends RecyclerView.Adapter<ProductRecycleViewHolder> {
 
-    List<Product> productList;
+    private List<Product> productList;
 
-    OnItemListClickListener listener;
+    private OnItemListClickListener listener;
 
     public ProductRecycleViewAdapter(OnItemListClickListener listener) {
         this.listener = listener;
+        productList = new ArrayList<>();
     }
 
     @NonNull
@@ -32,7 +34,7 @@ public class ProductRecycleViewAdapter extends RecyclerView.Adapter<ProductRecyc
 
     @Override
     public void onBindViewHolder(@NonNull ProductRecycleViewHolder holder, int position) {
-        holder.bind(productList.get(position));
+        holder.bind(productList.get(position).getTitle(),productList.get(position).getSubTitle());
     }
 
     @Override
