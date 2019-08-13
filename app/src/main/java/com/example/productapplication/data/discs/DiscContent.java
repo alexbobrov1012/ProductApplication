@@ -1,4 +1,4 @@
-package com.example.productapplication.data.utils;
+package com.example.productapplication.data.discs;
 
 public enum DiscContent {
     MUSIC("Музыка"),

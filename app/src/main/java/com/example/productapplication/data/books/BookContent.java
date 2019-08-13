@@ -1,4 +1,4 @@
-package com.example.productapplication.data.utils;
+package com.example.productapplication.data.books;
 
 public enum BookContent {
 

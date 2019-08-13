@@ -11,16 +11,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.productapplication.data.Product;
-import com.example.productapplication.data.books.Book;
-import com.example.productapplication.data.books.CookingBook;
-import com.example.productapplication.data.books.EsotericsBook;
-import com.example.productapplication.data.books.ProgrammingBook;
-import com.example.productapplication.data.discs.Disc;
-import com.example.productapplication.data.utils.DiscContent;
-import com.example.productapplication.data.utils.ProductType;
+import com.example.productapplication.data.ProductType;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements OnItemListClickListener{

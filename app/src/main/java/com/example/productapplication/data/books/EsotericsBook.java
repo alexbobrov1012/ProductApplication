@@ -1,7 +1,5 @@
 package com.example.productapplication.data.books;
 
-import com.example.productapplication.data.utils.BookContent;
-
 public class EsotericsBook extends Book {
     private int minAge;
 

@@ -1,7 +1,5 @@
 package com.example.productapplication.data.books;
 
-import com.example.productapplication.data.utils.BookContent;
-
 public class ProgrammingBook extends Book {
     private String language;
 

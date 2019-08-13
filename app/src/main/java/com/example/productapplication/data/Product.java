@@ -1,7 +1,5 @@
 package com.example.productapplication.data;
 
-import com.example.productapplication.data.utils.ProductType;
-
 import java.io.Serializable;
 
 public abstract class Product implements Serializable {

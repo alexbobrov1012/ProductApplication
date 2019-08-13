@@ -1,13 +1,12 @@
 package com.example.productapplication.data.books;
 
 import com.example.productapplication.data.Product;
-import com.example.productapplication.data.utils.BookContent;
-import com.example.productapplication.data.utils.ProductType;
+import com.example.productapplication.data.ProductType;
 
 public abstract class Book extends Product {
     int pages;
 
-    BookContent bookContent;
+    private BookContent bookContent;
 
     public Book(String name, double price, String code, int pages, BookContent bookContent) {
         super(name, price, code, ProductType.BOOK);

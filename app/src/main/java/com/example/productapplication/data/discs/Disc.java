@@ -1,9 +1,7 @@
 package com.example.productapplication.data.discs;
 
 import com.example.productapplication.data.Product;
-import com.example.productapplication.data.utils.DiscContent;
-import com.example.productapplication.data.utils.DiscType;
-import com.example.productapplication.data.utils.ProductType;
+import com.example.productapplication.data.ProductType;
 
 public class Disc extends Product {
     private DiscType type;
